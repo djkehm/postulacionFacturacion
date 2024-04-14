@@ -1,0 +1,62 @@
+.option-container {
+    display: flex;
+}
+
+.radio-option {
+    margin-right: 20px; 
+}
+
+
+.container-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.input-container {
+    display: flex; /* Utilizamos flexbox */
+    align-items: center; /* Centramos verticalmente los elementos */
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    margin-right: 10px; /* Agregamos un margen derecho entre el label y el input */
+    width: 200px; /* Establecemos un ancho fijo para el label */
+}
+
+.input-container input,
+.input-container select {
+    flex: 1; /* El input se expandirá para llenar el espacio disponible */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 200px; /* Establecemos un ancho máximo para el input */
+}
+
+
+.option-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    margin-right: 20px;
+}
+
+.radio-option input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.radio-option input[type="radio"]:checked {
+    background-color: #999;
+}
+
+.tittle-form{
+    margin-bottom: 50px;
+}
