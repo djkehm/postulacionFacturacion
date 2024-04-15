@@ -13,7 +13,7 @@ CREATE TABLE datos (
     region VARCHAR(50) NOT NULL,
     comuna VARCHAR(50) NOT NULL,
     candidato VARCHAR(50) NOT NULL,
-    referencia VARCHAR(20) NOT NULL
+    referencia VARCHAR(50) NOT NULL
 );
 
 
@@ -28,7 +28,7 @@ BEGIN
     DECLARE v_region VARCHAR(50);
     DECLARE v_comuna VARCHAR(50);
     DECLARE v_candidato VARCHAR(50);
-    DECLARE v_referencia VARCHAR(20);
+    DECLARE v_referencia VARCHAR(50);
     DECLARE v_existe INT DEFAULT 0;
     DECLARE exito BOOLEAN DEFAULT FALSE;
 

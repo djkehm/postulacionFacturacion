@@ -1,13 +1,42 @@
 //Autor: Kehmit Uribe -->
 //Valparaíso 13 de Abril del 2024 -->
-function enviarFormulario(){
+function enviarFormulario(){   
     event.preventDefault();
-    var jsonData = $('#votingForm').serializeArray().reduce(function(a, z) { a[z.name] = z.value; return a; }, {}) ;
+    
+    
+    if (!validateEmail()) {
+        alert('Por favor, ingrese un correo electrónico válido.');
+        return; 
+    }
+
+    var rut = $('#rut').val();
+    if (!validarRUT(rut)) {
+        alert('Por favor, ingrese un RUT válido.');
+        return;
+    }
+
+    var checkboxesValues = [];
+    $('input[name="entero"]:checked').each(function() {
+        checkboxesValues.push($(this).val());
+    });
+
+    var enteroString = checkboxesValues.join(',');
+
+    var jsonData = {
+        nombre: $('#nombre').val(),
+        alias: $('#alias').val(),
+        rut: rut,
+        email: $('#email').val(),
+        region: $('#region').val(),
+        comuna: $('#comuna').val(),
+        candidato: $('#candidato').val(),
+        entero: enteroString 
+    };
 
     console.log("guardarCambios(): " + JSON.stringify(jsonData));
     $.ajax({
         method: "POST",
-        url: "http://localhost:8080/facturacion.com/Controladores/guardarVotacion.php",
+        url: "http://localhost:8080/postulacionFacturacion/Controladores/guardarVotacion.php",
         async: true,
         contentType: 'application/json',
         data: JSON.stringify({ jsonData: JSON.stringify(jsonData) }),
@@ -27,6 +56,8 @@ function enviarFormulario(){
 
         });
 };
+    
+
 
 function cargarDatos() {
     const regionesSelect = document.getElementById('region');
@@ -100,19 +131,23 @@ function formatearRUT(rut) {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                checkboxes.forEach(cb => {
-                    if (cb !== this) {
-                        cb.checked = false;
-                    }
-                });
-            }
-        });
-    });
-});
+function validateEmail() {
+    var emailInput = document.getElementById('email');
+    var emailError = document.getElementById('emailError');
+    var email = emailInput.value.trim();
+
+    
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailPattern.test(email)) {
+        emailError.textContent = ''; 
+        return true; 
+    } else {
+        emailError.textContent = 'Formato de correo electrónico inválido';
+        return false; 
+    }
+};
+
+
 

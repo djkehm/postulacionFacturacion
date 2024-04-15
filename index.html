@@ -29,7 +29,8 @@
         </div>
         <div class="input-container">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required onchange="validateEmail()">
+            <p id="emailError" style="color: red;"></p>
         </div>
         <div class="input-container">
             <label for="region">Región:</label>
@@ -94,6 +95,7 @@
 
 <script>
     $( document ).ready(function() {
+        validateEmail();
         cargarDatos();
 
         $('#rut').on('change', function() {
@@ -107,5 +109,8 @@
                 $(this).focus(); 
             } 
         });
+        
     });
+
+    
 </script>
